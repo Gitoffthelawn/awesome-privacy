@@ -66,6 +66,7 @@
 		"undici": ">=6.23.0",
 		"lodash": ">=4.17.23",
 		"**/js-yaml": ">=4.1.1",
-		"brace-expansion": ">=2.0.1"
+		"brace-expansion": ">=2.0.1",
+		"yaml": "~2.8.3"
 	}
 }
