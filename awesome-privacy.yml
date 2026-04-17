@@ -1678,14 +1678,6 @@ categories:
           A network scanner to help you monitor and secure your WiFi network. The app is totally free,
           but to use the advanced controls, you will need a Fing Box.
 
-      - name: DPI Tunnel
-        github: nomoresat/DPITunnel-android
-        icon: https://raw.githubusercontent.com/nomoresat/DPITunnel-android/main/assets/logo.webp
-        url: https://f-droid.org/packages/ru.evgeniy.dpitunnelcli/
-        description: |
-          An application for Android that uses various techniques to bypass DPI (Deep Packet Inspection)
-          systems, which are used to block some sites (not available on Play store).
-
       - name: Blokada
         url: https://blokada.org/
         icon: https://blokada.org/favicon.png
