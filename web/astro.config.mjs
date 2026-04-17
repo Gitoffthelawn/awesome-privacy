@@ -7,14 +7,15 @@ import sitemap from '@astrojs/sitemap';
 import { printSummary } from './src/utils/logger.ts';
 
 // Deploy target (vercel | netlify | cloudflare | node). Default: vercel.
-const deployTarget = import.meta.env.DEPLOY_TARGET || 'vercel';
+const env = { ...import.meta.env, ...process.env };
+const deployTarget = env.DEPLOY_TARGET || 'vercel';
 
 // The site is SSG by default; pages that need an adapter opt in via
 // `export const prerender = false`. `OUTPUT` can override (e.g. `server`).
-const output = import.meta.env.OUTPUT || 'static';
+const output = env.OUTPUT || 'static';
 
 // The FQDN of where the site is hosted (used for sitemaps & canonical URLs)
-const site = import.meta.env.SITE_URL || 'https://awesome-privacy.xyz';
+const site = env.SITE_URL || 'https://awesome-privacy.xyz';
 
 // Only import the adapter we actually need — keeps optional peer deps
 // (e.g. cloudflare → wrangler) out of the install on other targets.
