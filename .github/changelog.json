@@ -1045,11 +1045,6 @@
               "name": "AliasVault",
               "category": "Essentials",
               "section": "Password Managers"
-            },
-            {
-              "name": "Windscribe",
-              "category": "Networking",
-              "section": "Virtual Private Networks"
             }
           ],
           "modified": [

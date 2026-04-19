@@ -60,7 +60,7 @@
 {#if history.length > 0}
   <h4>Change History</h4>
   <ul class="history">
-    {#each history as h (h.date + h.type)}
+    {#each history as h}
       <li>
         <span class="history-badge {h.type}">
           {h.type === 'added'
