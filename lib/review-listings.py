@@ -46,7 +46,6 @@ import signal
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass, field
-from datetime import datetime, timezone
 from threading import Lock
 from time import monotonic
 from typing import Callable, Iterable
@@ -140,10 +139,7 @@ def _get_repo(entry: Entry, ctx: Context):
     with ctx.repo_lock:
         if key in ctx.repo_cache:
             return ctx.repo_cache[key]
-    data = utils.gh_get(
-        f"/repos/{owner}/{repo}", ctx.token, ctx.session,
-        timeout=ctx.timeout, label="repos",
-    )
+    data = utils.fetch_repo(owner, repo, ctx.token, session=ctx.session)
     with ctx.repo_lock:
         ctx.repo_cache[key] = data
     return data
@@ -293,8 +289,7 @@ def _github_exists(entry: Entry, ctx: Context) -> Iterable[Finding]:
 @check("github-archived", needs_github=True)
 def _github_archived(entry: Entry, ctx: Context) -> Iterable[Finding]:
     """GitHub repo must not be archived."""
-    data = _get_repo(entry, ctx)
-    if data and data.get("archived"):
+    if utils.repo_is_archived(_get_repo(entry, ctx)):
         yield _finding(entry, "github-archived", "error", "repository is archived on GitHub")
 
 
@@ -302,7 +297,7 @@ def _github_archived(entry: Entry, ctx: Context) -> Iterable[Finding]:
 def _github_fork(entry: Entry, ctx: Context) -> Iterable[Finding]:
     """GitHub repo should not be a fork."""
     data = _get_repo(entry, ctx)
-    if data and data.get("fork"):
+    if utils.repo_is_fork(data):
         parent = (data.get("parent") or {}).get("full_name")
         suffix = f" of {parent}" if parent else ""
         yield _finding(entry, "github-fork", "warn", f"repository is a fork{suffix}")
@@ -311,17 +306,10 @@ def _github_fork(entry: Entry, ctx: Context) -> Iterable[Finding]:
 @check("github-activity", needs_github=True)
 def _github_activity(entry: Entry, ctx: Context) -> Iterable[Finding]:
     """GitHub repo has been pushed to recently."""
-    data = _get_repo(entry, ctx)
-    pushed = data.get("pushed_at") if data else None
-    if not pushed:
+    age = utils.repo_pushed_days_ago(_get_repo(entry, ctx))
+    if age is None:
         return
-    try:
-        pushed_dt = datetime.fromisoformat(pushed.replace("Z", "+00:00"))
-    except ValueError:
-        return
-    age = (datetime.now(timezone.utc) - pushed_dt).days
-    warn_days = ctx.inactive_days * 2
-    if age > warn_days:
+    if age > ctx.inactive_days * 2:
         sev = "warn"
     elif age > ctx.inactive_days:
         sev = "info"
@@ -334,7 +322,7 @@ def _github_activity(entry: Entry, ctx: Context) -> Iterable[Finding]:
 def _github_license(entry: Entry, ctx: Context) -> Iterable[Finding]:
     """GitHub repo must have a declared license."""
     data = _get_repo(entry, ctx)
-    if data and not data.get("license"):
+    if data and not utils.repo_has_license(data):
         yield _finding(entry, "github-license", "warn", "repository has no declared license")
 
 
