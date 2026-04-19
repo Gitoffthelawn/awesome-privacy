@@ -23,14 +23,13 @@ Findings have three severities: error (must fix), warn (should review), info (FY
 HTTP 403/429 on reachability checks is demoted from error to warn (bot-blocking).
 
 Flags:
-- --output {list,table,json,markdown}: report format (default list)
-- --output-file PATH: also write the report to a file
+- --save-json PATH: save a JSON report to this file
+- --save-markdown PATH: save a markdown report to this file (for GH Actions summaries)
 - --category / --section / --service: narrow to one entry
 - --only / --skip: pick or drop checks by name
 - --severity {all,warn,error}: filter findings
 - --max-workers N: parallel workers (default 8)
 - --timeout N: HTTP timeout in seconds (default 10)
-- --inactive-days N: info threshold for github-activity (default 365; warn at 2x)
 - --token: GitHub token, else $GITHUB_TOKEN
 - --no-color: disable ANSI colors
 - --list-checks: list checks and exit
@@ -46,6 +45,7 @@ import signal
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from threading import Lock
 from time import monotonic
 from typing import Callable, Iterable
@@ -57,17 +57,22 @@ except ImportError as exc:
     print(f"ERROR: missing dependency ({exc}). Run `make install_lib_deps`.", file=sys.stderr)
     sys.exit(2)
 
-INACTIVE_DAYS = 365
 MIN_DESC = 50
 MAX_DESC = 280
 MAX_DESC_HARD = 420
 DEFAULT_WORKERS = 8
 DEFAULT_TIMEOUT = 10
-DEFAULT_OUTPUT = "list"
+
+# github-activity age bands (days since last push). Order matters: most severe first.
+ACTIVITY_BANDS = (
+    (365 * 8, "error"),
+    (365 * 3, "warn"),
+    (365,     "info"),
+)
 
 SEVERITIES = ("error", "warn", "info")
 _SEV_COLOR = {"error": "red", "warn": "yellow", "info": "cyan"}
-_SEV_EMOJI = {"error": "🔴", "warn": "🟡", "info": "🔵"}
+_SEV_EMOJI = {"error": "🔴", "warn": "🟠", "info": "🟡"}
 _SOFT_HTTP = {403, 429}
 _PKG_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$")
 
@@ -98,7 +103,6 @@ class Context:
     session: object
     token: str
     timeout: int
-    inactive_days: int
     url_occurrences: dict = field(default_factory=dict)
     repo_cache: dict = field(default_factory=dict)
     repo_lock: Lock = field(default_factory=Lock)
@@ -305,17 +309,14 @@ def _github_fork(entry: Entry, ctx: Context) -> Iterable[Finding]:
 
 @check("github-activity", needs_github=True)
 def _github_activity(entry: Entry, ctx: Context) -> Iterable[Finding]:
-    """GitHub repo has been pushed to recently."""
+    """GitHub repo has been pushed to recently (info at 1y, warn at 3y, error at 8y)."""
     age = utils.repo_pushed_days_ago(_get_repo(entry, ctx))
     if age is None:
         return
-    if age > ctx.inactive_days * 2:
-        sev = "warn"
-    elif age > ctx.inactive_days:
-        sev = "info"
-    else:
-        return
-    yield _finding(entry, "github-activity", sev, f"last push {age} days ago")
+    for threshold, sev in ACTIVITY_BANDS:
+        if age >= threshold:
+            yield _finding(entry, "github-activity", sev, f"last push {age} days ago")
+            return
 
 
 @check("github-license", needs_github=True)
@@ -362,7 +363,6 @@ def build_context(args, data, token):
         session=utils.make_session(),
         token=token,
         timeout=args.timeout,
-        inactive_days=args.inactive_days,
     )
     for cat, sec, svc in utils.iter_services(data):
         url = _normalize_url(svc.get("url"))
@@ -475,12 +475,12 @@ def _markdown_summary(s):
     return "\n".join([
         "### Summary",
         "",
-        f"- {s['services_scanned']} listings scanned "
+        f"- ℹ️ {s['services_scanned']} listings scanned "
         f"({s['total_checks']} checks, {s['pass_rate']:.1f}% pass rate)",
-        f"- {s['findings']} findings "
+        f"- ⚠️ {s['findings']} findings "
         f"({s['errors']} errors, {s['warnings']} warnings, {s['info']} info)",
-        f"- {s['services_passed']} listings passed all checks",
-        f"- Took {s['elapsed_seconds']:.1f}s",
+        f"- ✅ {s['services_passed']} listings passed all checks",
+        f"- ⏱️ Triggered at {s['triggered_at']}, took {s['elapsed_seconds']:.1f}s",
     ])
 
 
@@ -497,33 +497,6 @@ def render_list(findings, colors, summary):
             badge = _sev_color(f.severity, colors)(f"[{f.severity.upper():<5}]")
             lines.append(f"  {badge} {colors['cyan'](f.check.ljust(20))} {f.message}")
         lines.append("")
-    lines.append(_summary(summary, colors))
-    return "\n".join(lines)
-
-
-def render_table(findings, colors, summary):
-    header = ("Service", "Path", "Check", "Sev", "Message")
-    rows = [header] + [
-        (
-            f.service[:30],
-            f"{f.category} > {f.section}"[:40],
-            f.check,
-            f.severity.upper()[:5],
-            f.message[:80],
-        )
-        for f in findings
-    ]
-    widths = [max(len(r[i]) for r in rows) for i in range(len(header))]
-    lines = []
-    for i, row in enumerate(rows):
-        cells = [row[j].ljust(widths[j]) for j in range(len(row))]
-        if i == 0:
-            lines.append(colors["bold"]("  ".join(cells)))
-            lines.append(colors["dim"]("  ".join("-" * w for w in widths)))
-        else:
-            cells[3] = _sev_color(row[3].lower(), colors)(cells[3])
-            lines.append("  ".join(cells))
-    lines.append("")
     lines.append(_summary(summary, colors))
     return "\n".join(lines)
 
@@ -554,7 +527,38 @@ def _md_message(msg, url_limit=42):
 def render_markdown(findings, colors, summary):
     def cell(s):
         return str(s).replace("|", "\\|").replace("\n", " ")
-    lines = ["| Service | Review Required |", "|---|---|"]
+
+    lines = []
+
+    lines += ["# Awesome Privacy Auto Checks", ""]
+
+    need_review = summary["findings"] - summary["errors"]
+    lines += [
+        f"_Ran {summary['total_checks']} checks across {summary['services_scanned']} "
+        f"listings, with a {summary['pass_rate']:.1f}% pass rate._",
+        f"_{summary['errors']} issues require action, plus another {need_review} "
+        f"findings need reviewing._",
+        "",
+    ]
+
+    errors = [f for f in findings if f.severity == "error"]
+    if errors:
+        lines += ["### Critical Issues", ""]
+        for f in errors:
+            lines.append(
+                f"- {_SEV_EMOJI[f.severity]} **{cell(f.service)}** - "
+                f"{_md_message(cell(f.message))}"
+            )
+        lines.append("")
+
+    lines += [
+        "---",
+        "",
+        "### Full Issue List",
+        "",
+        "| Service | Review Required |",
+        "|---|---|",
+    ]
     grouped: dict = {}
     for f in findings:
         grouped.setdefault((f.category, f.section, f.service), []).append(f)
@@ -568,18 +572,15 @@ def render_markdown(findings, colors, summary):
             f"| **{cell(name)}** [↗]({link})<br>"
             f"<sup>{cell(cat)} > {cell(sec)}</sup> | {review} |"
         )
-    lines += ["", _markdown_summary(summary)]
+    lines += ["", "---", "", _markdown_summary(summary)]
+    lines += [
+        "",
+        "> [!IMPORTANT]",
+        "> The automated checks can produce false positives, fail to include real issues, and does not "
+        "take the context of the listings into account. Careful human review is needed!",
+        ""
+    ]
     return "\n".join(lines)
-
-
-RENDERERS = {"list": render_list, "table": render_table, "json": render_json,
-             "markdown": render_markdown}
-
-_ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
-
-
-def strip_ansi(s: str) -> str:
-    return _ANSI_RE.sub("", s)
 
 
 def _csv(s):
@@ -590,8 +591,9 @@ def parse_args():
     p = argparse.ArgumentParser(
         description="Review all listings in awesome-privacy.yml against our criteria.",
     )
-    p.add_argument("--output", choices=RENDERERS.keys(), default=DEFAULT_OUTPUT)
-    p.add_argument("--output-file", help="also write the report here (ANSI stripped)")
+    p.add_argument("--save-json", metavar="PATH", help="save a JSON report to this file")
+    p.add_argument("--save-markdown", metavar="PATH",
+                   help="save a markdown report to this file (for GH Actions summaries)")
     p.add_argument("--category", help="filter to a single category")
     p.add_argument("--section", help="filter to a single section")
     p.add_argument("--service", help="filter to a single service")
@@ -600,7 +602,6 @@ def parse_args():
     p.add_argument("--severity", choices=["all", "warn", "error"], default="all")
     p.add_argument("--max-workers", type=int, default=DEFAULT_WORKERS)
     p.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT)
-    p.add_argument("--inactive-days", type=int, default=INACTIVE_DAYS)
     p.add_argument("--token", help="GitHub token (else $GITHUB_TOKEN)")
     p.add_argument("--no-color", action="store_true")
     p.add_argument("--list-checks", action="store_true", help="list available checks and exit")
@@ -675,24 +676,30 @@ def main():
     logging.info("Reviewing %d service(s) with %d check(s): %s",
                  len(entries), len(enabled), ", ".join(enabled))
 
+    triggered_at = datetime.now(timezone.utc)
     start = monotonic()
     findings = run_checks(entries, enabled, ctx, args.max_workers)
     elapsed = monotonic() - start
 
     summary = _compute_summary(findings, entries, enabled, elapsed)
+    summary["triggered_at"] = triggered_at.strftime("%Y-%m-%d %H:%M UTC")
     display = filter_severity(findings, args.severity)
     display.sort(key=lambda f: (f.category, f.section, f.service, f.check))
 
-    report = RENDERERS[args.output](display, colors, summary)
-    print(report)
+    print(render_list(display, colors, summary))
 
-    if args.output_file:
+    for path, renderer in (
+        (args.save_json, render_json),
+        (args.save_markdown, render_markdown),
+    ):
+        if not path:
+            continue
         try:
-            with open(args.output_file, "w") as f:
-                f.write(strip_ansi(report) + "\n")
-            logging.info("Wrote report to %s", args.output_file)
+            with open(path, "w") as f:
+                f.write(renderer(display, colors, summary) + "\n")
+            logging.info("Wrote %s", path)
         except OSError as exc:
-            logging.warning("Could not write %s: %s", args.output_file, exc)
+            logging.warning("Could not write %s: %s", path, exc)
 
     sys.exit(1 if any(f.severity == "error" for f in findings) else 0)
 
