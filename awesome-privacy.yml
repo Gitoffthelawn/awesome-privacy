@@ -3104,6 +3104,15 @@ categories:
           Calendar app for the self-hosted Nextcloud platform. Uses CalDAV for
           sync across devices. No E2E encryption support.
 
+      - name: Fossify Calendar
+        url: https://www.fossify.org/
+        github: https://github.com/FossifyOrg/Calendar
+        followWith: Self-Hosted
+        icon: https://github.com/FossifyOrg/Calendar/blob/main/graphics/icon.webp
+        description: |
+          Fossify Calendar from the family of forked FOSS apps from the
+          discontinued SimpleMobileTools. Simple, customizable, includes widgets.
+
     ###############################
     ###### Task Management ######
     ##############################
