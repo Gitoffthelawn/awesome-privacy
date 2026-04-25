@@ -63,7 +63,7 @@ corporations, governments, and hackers from logging, storing or selling your per
 	- [DNS Hosting](#dns-hosting) (1)
 	- [Mail Servers](#mail-servers) (3)
 - **Productivity**
-	- [Digital Notes](#digital-notes) (9)
+	- [Digital Notes](#digital-notes) (8)
 	- [Calendar](#calendar) (2)
 	- [Task Management](#task-management) (1)
 	- [Backup and Sync](#backup-and-sync) (4)
@@ -1038,7 +1038,6 @@ be time consuming to setup and maintain and securing it correctly is critical
 - **[<img src='https://joplinapp.org/images/favicon.png' width='14' alt='' /> Joplin](https://joplinapp.org)** - Cross-platform desktop and mobile note-taking and todo app. Easy organisation into notebooks and sections, revision history and a simple UI. Allows for easy import and export of notes to or from other[…](https://awesome-privacy.xyz/productivity/digital-notes/joplin "View full Joplin report") 
 - **[<img src='https://logseq.com/logo-with-border.a30e7bd0.png' width='14' alt='' /> Logseq](https://logseq.com/)** - Privacy-first, open-source knowledge base that works on top of local plain-text Markdown and Org-mode files. Supports lots of different note modes, including task management, PDF annotation, flashcard[…](https://awesome-privacy.xyz/productivity/digital-notes/logseq "View full Logseq report") 
 - **[<img src='https://obsidian.md/favicon.svg' width='14' alt='' /> Obsidian](https://obsidian.md/)** - A powerful knowledge base that works on top of local plain-text Markdown files. It has a strong community, and a lot of plugins and themes. Generally privacy-respecting, but no encryption out of the b[…](https://awesome-privacy.xyz/productivity/digital-notes/obsidian "View full Obsidian report") 
-- **[<img src='https://icon.horse/icon/affine.pro' width='14' alt='' /> AFFiNE](https://affine.pro)** - Privacy first, open-source alternative to Notion, monday.com and Miro. It is a knowledge management tool that allows you to create, organize and share your knowledge. 
 - **[<img src='https://raw.githubusercontent.com/cryptee/web-client/v3/source/assets/logo-b.svg' width='14' alt='' /> Cryptee](https://crypt.ee/)** - Private & encrypted rich-text documents. Cryptee has encryption and anonymity at its core, it also has a beautiful and minimalistic UI. You can use Cryptee from the browser, or download native apps. C[…](https://awesome-privacy.xyz/productivity/digital-notes/cryptee "View full Cryptee report") 
 - **[<img src='https://icon.horse/icon/app.vnote.fun' width='14' alt='' /> VNote](https://app.vnote.fun/en_us/)** - A free, open-source note-taking application built with Qt, focused on providing a pleasant Markdown editing experience. It manages notes directly as plain text files on your local system. 
 
