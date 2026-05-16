@@ -95,7 +95,7 @@ corporations, governments, and hackers from logging, storing or selling your per
 	- [Crypto Exchanges](#crypto-exchanges) (2)
 	- [Virtual Credit Cards](#virtual-credit-cards) (2)
 	- [Other Payment Methods](#other-payment-methods) (3)
-	- [Secure Budgeting](#secure-budgeting) (5)
+	- [Secure Budgeting](#secure-budgeting) (6)
 - **Social**
 	- [Social Networks](#social-networks) (4)
 	- [Video Platforms](#video-platforms) (2)
@@ -253,8 +253,8 @@ that makes a good alternative to BitLocker.
 
 - **[<img src='https://signal.org/assets/images/favicon/android-chrome-192x192.png' width='14' alt='' /> Signal](https://signal.org)** - Probably one of the most popular, secure private messaging apps that combines strong encryption (see [Signal Protocol](https://en.wikipedia.org/wiki/Signal_Protocol)) with a simple UI and plenty of features. It's widely used across the world, and ea[…](https://awesome-privacy.xyz/communication/encrypted-messaging/signal "View full Signal report") 
 - **[<img src='https://getsession.org/favicon.ico' width='14' alt='' /> Session](https://getsession.org)** - Session is a fork of Signal, however unlike Signal it does not require a mobile number (or any other personal data) to register, instead each user is identified by a public key. It is also decentraliz[…](https://awesome-privacy.xyz/communication/encrypted-messaging/session "View full Session report") 
-- **[<img src='https://github.com/simplex-chat/simplex-chat/blob/stable/media-logos/simplex-symbol-light.png' width='14' alt='' /> SimpleX](https://simplex.chat/)** - Simplex is gaining popularity as a secure and private messaging app renowned for its robust encryption protocol without user IDs or phone numbers and this improves your privacy. Simplex offers instant[…](https://awesome-privacy.xyz/communication/encrypted-messaging/simplex "View full SimpleX report") 
-- **[<img src='https://xmpp.org/favicon.ico' width='14' alt='' /> XMPP](https://xmpp.org)** - XMPP, also known as Jabber, is an open standard for decentralized messaging that has been widely used for decades. It has actually been the basis upon which WhatsApp, Facebook's Chat and Google's Talk[…](https://awesome-privacy.xyz/communication/encrypted-messaging/xmpp "View full XMPP report") 
+- **[<img src='https://simplex.chat/img/new/logo-symbol-light.svg' width='14' alt='' /> SimpleX](https://simplex.chat/)** - Simplex is gaining popularity as a secure and private messaging app renowned for its robust encryption protocol without user IDs or phone numbers and this improves your privacy. Simplex offers instant[…](https://awesome-privacy.xyz/communication/encrypted-messaging/simplex "View full SimpleX report") 
+- **[<img src='https://xmpp.org/apple-touch-icon.png' width='14' alt='' /> XMPP](https://xmpp.org)** - XMPP, also known as Jabber, is an open standard for decentralized messaging that has been widely used for decades. It has actually been the basis upon which WhatsApp, Facebook's Chat and Google's Talk[…](https://awesome-privacy.xyz/communication/encrypted-messaging/xmpp "View full XMPP report") 
 - **[<img src='https://matrix.org/assets/favicon.ico' width='14' alt='' /> Matrix](https://matrix.org)** - Matrix is a decentralized open network for secure communications, with E2E encryption with Olm and Megolm. Along with the [Element](https://element.io/) client, it supports VOIP + video calling and IM + group chats. Since M[…](https://awesome-privacy.xyz/communication/encrypted-messaging/matrix "View full Matrix report") 
 
 <details>
@@ -1953,6 +1953,7 @@ crypto currency or cash, since neither can be easily tied back to your identity.
 - **[<img src='https://icon.horse/icon/plaintextaccounting.org' width='14' alt='' /> Plain Text Accounting](https://plaintextaccounting.org)** - Utilizes plain text files and scriptable, command-line-friendly software for bookkeeping/accounting, offering full control over data. Popular tools include Ledger, hledger, and Beancount among others,[…](https://awesome-privacy.xyz/finance/secure-budgeting/plain-text-accounting "View full Plain Text Accounting report") 
 - **[<img src='https://raw.githubusercontent.com/mayswind/ezbookkeeping/refs/heads/main/public/img/ezbookkeeping-512.png' width='14' alt='' /> ezBookkeeping](https://ezbookkeeping.mayswind.net/)** - A lightweight, self-hosted personal finance app for recording daily transactions and analyzing spending patterns. Self-hosted, with all data staying on your own server. Supports 2FA and OICD. 
 - **[<img src='https://raw.githubusercontent.com/actualbudget/actual/a2267c480647bf01f1cae302292a8a237846124c/packages/desktop-electron/icons/icon.png' width='14' alt='' /> Actual](https://actualbudget.org/)** - A local-first personal finance app 
+- **[<img src='https://raw.githubusercontent.com/TNT-Likely/BeeCount/main/assets/logo2.png' width='14' alt='' /> BeeCount](https://beecount-website.pages.dev)** - Privacy-first cross-platform personal expense tracker (Android/iOS/Web) with offline-first design. Multi-cloud sync options — self-hosted BeeCount Cloud, iCloud, Supabase, WebDAV or S3 — keep data und[…](https://awesome-privacy.xyz/finance/secure-budgeting/beecount "View full BeeCount report") 
 
 <details>
 <summary>✳️ <b>Notable Mentions</b></summary>
