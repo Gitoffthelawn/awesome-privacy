@@ -68,7 +68,7 @@ corporations, governments, and hackers from logging, storing or selling your per
 	- [Task Management](#task-management) (1)
 	- [Backup and Sync](#backup-and-sync) (4)
 	- [Cloud Productivity Suites](#cloud-productivity-suites) (5)
-	- [Encrypted Cloud Storage](#encrypted-cloud-storage) (7)
+	- [Encrypted Cloud Storage](#encrypted-cloud-storage) (6)
 	- [Secret Sharing](#secret-sharing) (3)
 	- [File Drop](#file-drop) (2)
 	- [Browser Sync](#browser-sync) (4)
@@ -79,7 +79,7 @@ corporations, governments, and hackers from logging, storing or selling your per
 	- [Metadata Removal](#metadata-removal) (3)
 	- [Data Erasers](#data-erasers) (8)
 - **Operating Systems**
-	- [Mobile Operating Systems](#mobile-operating-systems) (4)
+	- [Mobile Operating Systems](#mobile-operating-systems) (3)
 	- [Desktop Operating Systems](#desktop-operating-systems) (5)
 	- [Linux Defenses](#linux-defenses) (6)
 	- [Windows Defences](#windows-defences) (17)
@@ -103,7 +103,7 @@ corporations, governments, and hackers from logging, storing or selling your per
 	- [News Readers](#news-readers) (1)
 	- [Proxy Sites](#proxy-sites) (4)
 - **Media**
-	- [File Converters](#file-converters) (1)
+	- [File Converters](#file-converters) (2)
 - **Creativity**
 	- [Image Editors](#image-editors) (8)
 	- [Video Editors](#video-editors) (7)
@@ -202,11 +202,11 @@ that makes a good alternative to BitLocker.
 
 ### Browsers
 
-- **[<img src='https://librewolf.net/icon.svg' width='14' alt='' /> LibreWolf](https://librewolf.net)** - LibreWolf is an independent fork of Firefox that aims to provide better default settings to improve on privacy, security and user freedom. Mozilla telemetry is disabled, ties with Google (Safe Browsin[…](https://awesome-privacy.xyz/essentials/browsers/librewolf "View full LibreWolf report") 
-- **[<img src='https://brave.com/static-assets/images/brave-logo-sans-text.svg' width='14' alt='' /> Brave Browser](https://brave.com)** - Brave Browser, currently one of the most popular private browsers - it provides speed, security, and privacy by blocking trackers with a clean, yet fully-featured UI. It also pays you in [BAT tokens](https://basicattentiontoken.org/) fo[…](https://awesome-privacy.xyz/essentials/browsers/brave-browser "View full Brave Browser report") 
-- **[<img src='https://www.mozilla.org/media/protocol/img/logos/firefox/logo.fedb52c912d6.svg' width='14' alt='' /> Firefox](https://www.firefox.com/)** - Significantly more private, and offers some nifty privacy features than Chrome, Internet Explorer and Safari. After installing, there are a couple of small tweaks you will need to make, in order to se[…](https://awesome-privacy.xyz/essentials/browsers/firefox "View full Firefox report") 
-- **[<img src='https://www.torproject.org/static/images/favicon/favicon.ico' width='14' alt='' /> Tor Browser](https://www.torproject.org/)** - Tor provides an extra layer of anonymity, by encrypting each of your requests, then routing it through several nodes, making it near-impossible for you to be tracked by your ISP/ provider. It does mak[…](https://awesome-privacy.xyz/essentials/browsers/tor-browser "View full Tor Browser report") 
-- **[<img src='https://camo.githubusercontent.com/fc003f5ff33669908e7b929692fdbb8d10ec7df5ffa5e02e4d9becf405dd7804/68747470733a2f2f7777772e63726f6d6974652e6f72672f6170705f69636f6e2e706e67' width='14' alt='' /> Cromite](https://www.cromite.org/)** - Cromite is a Chromium fork based on Bromite with built-in support for ad blocking and an eye for privacy. 
+- **[<img src='https://librewolf.net/icon.svg' width='14' alt='' /> LibreWolf](https://librewolf.net)** - An independent fork of Firefox hardened for privacy by default. No telemetry, uBlock Origin bundled, anti-fingerprinting, strict settings 
+- **[<img src='https://brave.com/static-assets/images/brave-logo-sans-text.svg' width='14' alt='' /> Brave Browser](https://brave.com)** - Chromium-based browser with strong built-in ad, tracker and fingerprint blocking, and timely Chromium security updates. Note that Brave does bundle potentially unwanted features, like crypto, rewards[…](https://awesome-privacy.xyz/essentials/browsers/brave-browser "View full Brave Browser report") 
+- **[<img src='https://www.mozilla.org/media/protocol/img/logos/firefox/logo.fedb52c912d6.svg' width='14' alt='' /> Firefox](https://www.firefox.com/)** - The main independent browser, on Mozilla's own Gecko engine rather than Chromium. Reliable, long-standing, with frequent security updates, broad extension support and strong customization. However tel[…](https://awesome-privacy.xyz/essentials/browsers/firefox "View full Firefox report") 
+- **[<img src='https://www.torproject.org/static/images/favicon/favicon.ico' width='14' alt='' /> Tor Browser](https://www.torproject.org/)** - Tor provides an extra layer of anonymity, by encrypting each of your requests, then routing it through several nodes, making it near-impossible for you to be tracked by your ISP. While excellent for a[…](https://awesome-privacy.xyz/essentials/browsers/tor-browser "View full Tor Browser report") 
+- **[<img src='https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/mullvad-browser.png' width='14' alt='' /> Mullvad Browser](https://mullvad.net/browser)** - A Firefox-based browser maintained in collaboration between the Tor Project and Mullvad. With strong anti-fingerprinting (so users look alike), no telemetry and uBlock Origin bundled 
 
 <details>
 <summary>⚠️ <b>Word of Warning</b></summary>
@@ -219,8 +219,13 @@ that makes a good alternative to BitLocker.
 <details>
 <summary>✳️ <b>Notable Mentions</b></summary>
 
-> **Mobile Browsers**: [Firefox Focus](https://support.mozilla.org/en-US/kb/focus) (Android/ iOS), [DuckDuckGo Browser](https://help.duckduckgo.com/duckduckgo-help-pages/mobile/ios/) (Android/ iOS), [Orbot](https://guardianproject.info/apps/orbot/) + [Tor](https://www.torproject.org/download/#android) (Android), [Onion Browser](https://onionbrowser.com/) (iOS)<br><br> **Additional Desktop**: [Nyxt](https://nyxt.atlas.engineer/), [WaterFox](https://www.waterfox.net), [Epic Privacy Browser](https://www.epicbrowser.com), [PaleMoon](https://www.palemoon.org), [Iridium](https://iridiumbrowser.de/), [Sea Monkey](https://www.seamonkey-project.org/), [Ungoogled-Chromium](https://github.com/Eloston/ungoogled-chromium), [Basilisk Browser](https://www.basilisk-browser.org/) and [IceCat](https://www.gnu.org/software/gnuzilla/) 12Bytes also maintains a list privacy & security [extensions](https://12bytes.org/articles/tech/firefox/firefox-extensions-my-picks/)
-> </details>
+> - [Cromite](https://www.cromite.org/) - Chromium fork and successor of Bromite. Adds built-in ad and tracker blocking, removes Google service calls, and disables several fingerprinting vectors. Note that patches often lag several weeks behind upstream> - [WaterFox](https://www.waterfox.net) - Firefox fork with telemetry, studies and data collection removed. The legacy Classic line retains support for XUL/NPAPI extensions; the current Quantum-based release does not.> - [PaleMoon](https://www.palemoon.org) - Independent Firefox-derived browser using its own Goanna engine. Disables telemetry and retains support for legacy XUL extensions. Lagging support for modern web-platform features (e.g. CSP) has led to incidents of Cloudflare blocking the browser.> - [Iridium](https://iridiumbrowser.de/) - Chromium fork with telemetry, background pings and most Google service integrations stripped out or made opt-in.> - [SeaMonkey](https://www.seamonkey-project.org/) - All-in-one internet suite (browser, mail, IRC, HTML editor) derived from the Mozilla Application Suite. Receives security fixes but lags upstream Firefox on features.> - [Ungoogled-Chromium](https://github.com/ungoogled-software/ungoogled-chromium) - Chromium with all Google web service integrations, binary blobs and background calls removed. Tries to retain the default Chromium experience as closely as possible. No built-in auto-updates; relies on third-party rebuilds for security patches.> - [Basilisk Browser](https://www.basilisk-browser.org/) - Firefox/UXP-based fork originally created by Moonchild Productions and independently maintained since 2022. Retains NPAPI plugin and XUL extension support dropped by mainline Firefox.> - [IceCat](https://www.gnu.org/software/gnuzilla/) - GNU's fully-free Firefox fork. Removes proprietary components such as DRM and EME, and bundles LibreJS to block non-free JavaScript. Tracks Firefox ESR, but release cadence lags upstream and can delay security fixes.</details>
+
+<details>
+<summary>ℹ️ <b>Further Info</b></summary>
+
+> 12Bytes maintains a list of privacy & security [extensions](https://12bytes.org/articles/tech/firefox/firefox-extensions-my-picks/).
+</details>
 
 <p align="right"><sup><a href="#top">⬆️ [Back to Top]</a></sub></p>
 
@@ -1145,7 +1150,6 @@ It is recommended to encrypt files on your client machine, before syncing to the
 
 - **[<img src='https://icon.horse/icon/tresorit.com' width='14' alt='' /> Tresorit](https://tresorit.com)** - End-to-end encrypted zero knowledge file storage, syncing and sharing provider, based in Switzerland. The app is cross-platform, user-friendly client and with all expected features. £6.49/month for 50[…](https://awesome-privacy.xyz/productivity/encrypted-cloud-storage/tresorit "View full Tresorit report") 
 - **[<img src='https://icon.horse/icon/icedrive.net' width='14' alt='' /> IceDrive](https://icedrive.net)** - Very affordable encrypted storage provider, with cross-platform apps. Starts as £1.50/month for 150 GB or £3.33/month for 1 TB. 
-- **[<img src='https://icon.horse/icon/www.sync.com' width='14' alt='' /> Sync.com](https://www.sync.com)** - Secure file sync, sharing, collaboration and backup for individuals, small businesses and sole practitioners. Starts at $8/month for 2 TB. 
 - **[<img src='https://icon.horse/icon/peergos.org' width='14' alt='' /> Peergos](https://peergos.org/)** - A peer-to-peer end-to-end encrypted global filesystem with fine grained access control. Provides a secure and private space online where you can store, share and view your photos, videos, music and do[…](https://awesome-privacy.xyz/productivity/encrypted-cloud-storage/peergos "View full Peergos report") 
 - **[<img src='https://internxt.com/favicon.ico' width='14' alt='' /> Internxt](https://internxt.com/)** - Store your files in total privacy. Internxt Drive is a zero-knowledge cloud storage service based on best-in-class privacy and security. Made in Spain. Open-source mobile and desktop apps. 10GB FREE a[…](https://awesome-privacy.xyz/productivity/encrypted-cloud-storage/internxt "View full Internxt report") 
 - **[<img src='https://icon.horse/icon/filen.io' width='14' alt='' /> FileN](https://filen.io/)** - Zero knowledge end-to-end encrypted affordable cloud storage made in Germany. Open-source mobile and desktop apps. 10GB FREE with paid plans starting at €0.92/month for 100GB. 
@@ -1414,7 +1418,6 @@ A [custom ROM](https://en.wikipedia.org/wiki/List_of_custom_Android_distribution
 is an open source, usually Google-free mobile OS that can be flashed to your device.
 
 - **[<img src='https://grapheneos.org/apple-touch-icon.png' width='14' alt='' /> GrapheneOS](https://grapheneos.org/)** - GrapheneOS is an open source privacy and security focused mobile OS with Android app compatibility. Developed by Daniel Micay. GrapheneOS is a young project, and currently only supports Pixel devices,[…](https://awesome-privacy.xyz/operating-systems/mobile-operating-systems/grapheneos "View full GrapheneOS report") 
-- **[<img src='https://calyxos.org/assets/images/favicon/apple-touch-icon.png' width='14' alt='' /> CalyxOS](https://calyxos.org)** - CalyxOS is an free and open source Android mobile operating system that puts privacy and security into the hands of everyday users. Plus, proactive security recommendations and automatic updates take[…](https://awesome-privacy.xyz/operating-systems/mobile-operating-systems/calyxos "View full CalyxOS report") 
 - **[<img src='https://www.lineageos.org/images/logo.png' width='14' alt='' /> LineageOS](https://www.lineageos.org)** - A free and open-source operating system for various devices, based on the Android mobile platform - Lineage is light-weight, well maintained, supports a wide range of devices, and comes bundled with P[…](https://awesome-privacy.xyz/operating-systems/mobile-operating-systems/lineageos "View full LineageOS report") 
 - **[<img src='https://axpos.org/favicon.svg' width='14' alt='' /> AXP.OS](https://axpos.org)** - AXP.OS is an operating system based on AOSP & LineageOS. Emerged from the discontinued [DivestOS](https://divestos-archive.codeberg.page), it aims to prolong the lifespan of discontinued devices, enhance privacy and increase security where po[…](https://awesome-privacy.xyz/operating-systems/mobile-operating-systems/axp.os "View full AXP.OS report") 
 
@@ -2200,6 +2203,7 @@ TikTok, and more.*
 ### File Converters
 
 - **[<img src='https://ffmpeg.org/favicon.ico' width='14' alt='' /> FFmpeg](https://ffmpeg.org/)** - A complete, cross-platform solution to record, convert, and stream audio and video. It's the industry standard multimedia framework, handling a vast range of formats. As a command-line tool, it guaran[…](https://awesome-privacy.xyz/media/file-converters/ffmpeg "View full FFmpeg report") 
+- **[<img src='https://vert.sh/lettermark.jpg' width='14' alt='' /> VERT](https://vert.sh)** - Web-based file conversion utility, which runs locally on your device using WebAssembly. Supports 250+ formats across images, audio, documents, and video. 
 
 <p align="right"><sup><a href="#top">⬆️ [Back to Top]</a></sub></p>
 
