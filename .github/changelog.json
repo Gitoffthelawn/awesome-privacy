@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T06:48:50Z",
+  "generatedAt": "2026-06-22T08:00:24Z",
   "processedShas": [
     "02125ec429ec1ce9c5acdec1604703cb058a7887",
     "02231fb0a59ee43f93c6d0143640284cb7587d71",
@@ -285,7 +285,8 @@
     625,
     629,
     634,
-    637
+    637,
+    640
   ],
   "entries": [
     {
@@ -5933,6 +5934,16 @@
     }
   ],
   "rejections": [
+    {
+      "date": "2026-06-20",
+      "title": "Add BibaVPN to proxies",
+      "pr": {
+        "number": 640,
+        "url": "https://github.com/lissy93/awesome-privacy/pull/640",
+        "author": "Eljaja",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/15385141?v=4"
+      }
+    },
     {
       "date": "2026-06-19",
       "title": "Adds gitGost to developer utils",
